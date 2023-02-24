@@ -16,23 +16,14 @@ def task(task_id):
     LOGGER.info("TaskStatusAPI")
     state = task.state
     LOGGER.info("Task: state: %r", state)
-    if state == 'PENDING':
-        response = {
+    return (
+        {
             'queue_state': state,
             'status': 'Process is ongoing...',
         }
-    elif state == 'SUCCESS':
-
-        response = {
-            'queue_state': state,
-            'result': task.wait()
-        }
-    else:
-        response = {
-            'queue_state': state,
-            'result': task.wait()
-        }
-    return response
+        if state == 'PENDING'
+        else {'queue_state': state, 'result': task.wait()}
+    )
 
 
 class TaskStatusAPI(Resource):
@@ -61,7 +52,7 @@ class GroupDataProcessingAPI(Resource):
 
         LOGGER.info("Task: %s", task)
 
-        return {'task_id': "{}".format(task)}, 200
+        return {'task_id': f"{task}"}, 200
 
 
 # data processing endpoint
