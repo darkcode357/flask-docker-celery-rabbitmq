@@ -7,10 +7,12 @@ from api import api
 import config
 from models import db
 
-logging.basicConfig(level=logging.DEBUG,
-                    format='[%(asctime)s]: {} %(levelname)s %(message)s'.format(os.getpid()),
-                    datefmt='%Y-%m-%d %H:%M:%S',
-                    handlers=[logging.StreamHandler()])
+logging.basicConfig(
+    level=logging.DEBUG,
+    format=f'[%(asctime)s]: {os.getpid()} %(levelname)s %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S',
+    handlers=[logging.StreamHandler()],
+)
 
 LOGGER = logging.getLogger()
 
